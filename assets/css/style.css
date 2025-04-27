@@ -1,0 +1,157 @@
+html, body {
+  scroll-behavior: smooth;
+  background: #f8e1d7;
+  font-family: 'Great Vibes', cursive;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+}
+
+.header {
+  padding: 2vh 5vw;
+  background: #f0d2c7;
+}
+
+.header h1 {
+  font-family: 'Great Vibes', cursive;
+  color: #8d4f47;
+  text-transform: uppercase;
+  text-align: center;
+  border-bottom: 3px solid #8d4f47;
+  margin: 3px 0;
+  font-size: 2.5em;
+}
+
+/* Footer styling */
+.footer {
+  font-family: 'Great Vibes', cursive;
+  background: #f0d2c7;
+  padding: 1vh 1vw; /* Reduced padding for smaller height */
+  text-align: center;
+  color: #8d4f47;
+  font-size: 1.5em; /* Optional: Reduce font size if needed */
+}
+
+/* Add a book-like border around the entire magazine */
+#magazine {
+  width: 1500px;
+  height: 900px;
+  justify-content: center;
+  position: relative;
+  display: flex;
+  gap: 4px; /* Add a tiny gap between the pages */
+  margin: 1vw auto; /* Center horizontally and add vertical space */
+  transform: scale(0.8); /* Scale down the flipbook to 80% of its original size */
+  transform-origin: center; /* Ensure scaling happens from the center */
+  background: #8d4f47; /* Optional: Add a background color for the spine */
+}
+
+/* Add a border around individual pages */
+.page {
+  border: 2px solid #f0d2c7; /* Lighter border for individual pages */
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1); /* Inner shadow for depth */
+  border-radius: 5px; /* Slightly rounded corners for pages */
+  overflow: hidden; /* Ensure content stays within the border */
+  background: #fff; /* Ensure pages have a white background */
+}
+
+/* Remove border and spine for the first and last pages */
+.page:first-child,
+.page:last-child {
+  border: none; /* Remove border */
+  box-shadow: none; /* Remove shadow */
+  background: none; /* Optional: Remove background if needed */
+}
+
+/* Add a book-like spine between the pages */
+#magazine::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%; /* Center the spine */
+  width: 4px; /* Width of the spine */
+  height: 100%;
+  background: #8d4f47; /* Dark color for the spine */
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5); /* Add depth to the spine */
+  transform: translateX(-50%); /* Center the spine exactly */
+  z-index: 5; /* Ensure it appears above the background but below the pages */
+  pointer-events: none; /* Prevent interaction with the spine */
+}
+
+/* Remove spine for the first and last pages */
+#magazine .page:first-child::before,
+#magazine .page:last-child::before {
+  content: none; /* Remove the spine pseudo-element */
+}
+
+#magazine .turn-page {
+  background-color: #f8e1d7;
+  background-size: 100% 100%;
+}
+
+
+
+
+
+/* Fix for the jittering arrows */
+.turn-page .next, .turn-page .prev {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%); /* Vertically center the arrow */
+  z-index: 20; /* Ensure arrows are always on top */
+  background: rgba(0, 0, 0, 0.5); /* Transparent background */
+  border: 2px solid #8d4f47; /* Optional: Add border to make arrows more visible */
+  border-radius: 50%;
+  padding: 10px;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  box-sizing: border-box; /* Ensures padding and border don't affect position */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px; /* Set a fixed width */
+  height: 40px; /* Set a fixed height */
+  will-change: transform; /* Triggers GPU acceleration for smooth transitions */
+}
+
+/* Position the right arrow */
+.turn-page .next {
+  right: 10px; /* Align right arrow with a fixed offset */
+}
+
+/* Position the left arrow */
+.turn-page .prev {
+  left: 10px; /* Align left arrow with a fixed offset */
+}
+
+/* Hover effect for arrows */
+.turn-page .next:hover, .turn-page .prev:hover {
+  background-color: #8d4f47; /* Change color on hover */
+}
+
+
+
+
+
+/* For Photo and Video */
+.page.white-page {
+  display: flex;
+  flex-direction: column; /* Stack the image and video vertically */
+  justify-content: space-between; /* Add space between the image and video */
+  height: 100%; /* Ensure the page takes full height */
+}
+
+.image-content {
+  flex: 1; /* Take up half the height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.video-content {
+  flex: 1; /* Take up half the height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
