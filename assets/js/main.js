@@ -32,9 +32,10 @@ $(window).ready(function() {
 });
 
 const initialWidth = window.innerWidth;
-const initialHeight = window.innerHeight;
+
 window.addEventListener('resize', () => {
-  if (window.innerWidth !== initialWidth || window.innerHeight !== initialHeight) {
+  if (Math.abs(window.innerWidth - initialWidth) > 50) {
+    // Only reload if WIDTH changes significantly
     window.location.reload();
   }
 });
