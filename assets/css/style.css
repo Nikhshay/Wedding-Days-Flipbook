@@ -4,9 +4,9 @@ html, body {
   font-family: 'Great Vibes', cursive;
   margin: 0;
   padding: 0;
-  height: 100vh;
-  overflow-x: auto;
-  overflow-y: auto
+  min-height: 100vh; /* minimum full height */
+  overflow-x: hidden;
+  overflow-y: hidden; /* allow vertical scroll ONLY if needed */
 }
 
 .header {
