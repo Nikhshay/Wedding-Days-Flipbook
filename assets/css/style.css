@@ -4,9 +4,9 @@ html, body {
   font-family: 'Great Vibes', cursive;
   margin: 0;
   padding: 0;
-  min-height: 100vh; /* minimum full height */
+  min-height: 100vh;
   overflow-x: hidden;
-  overflow-y: hidden; /* allow vertical scroll ONLY if needed */
+  overflow-y: hidden;
 }
 
 .header {
@@ -28,73 +28,64 @@ html, body {
 /* Footer styling */
 .footer {
   position: fixed;
-  font-family: 'Great Vibes', cursive;
   bottom: 0;
   left: 0;
   width: 100%;
   padding: 0.3vh 0.3vw;
   background: #f0d2c7;
   color: #8d4f47;
+  font-family: 'Great Vibes', cursive;
   font-size: 1.5vw;
   z-index: 10;
   text-align: center;
   box-sizing: border-box;
-  transition: transform 0.3s ease-in-out; /* Add a smooth transition for the hide/show effect */
+  transition: transform 0.3s ease-in-out;
 }
 
 .footer--hidden {
-  transform: translateY(100%); /* Move the footer out of the viewport */
+  transform: translateY(100%);
 }
 
-/* Add a book-like border around the entire magazine */
+/* Flipbook mode (desktop) */
 #magazine {
   width: 60%;
-  height: 75%; /* Equivalent to 1575px on a specific viewport, adjust if needed */
+  height: 75%;
   justify-content: center;
   position: fixed;
   display: flex;
-  margin: 1vw auto; /* Center horizontally and add vertical space */
-  transform: scale(0.8); /* Scale down the flipbook to 80% of its original size */
-  transform-origin: center; /* Ensure scaling happens from the center */
-  background: #8d4f47; /* Optional: Add a background color for the spine */
+  margin: 1vw auto;
+  transform: scale(0.8);
+  transform-origin: center;
+  background: #8d4f47;
 }
 
-/* Add a border around individual pages */
 .page {
-  border: 2px solid #f0d2c7; /* Lighter border for individual pages */
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1); /* Inner shadow for depth */
-  border-radius: 5px; /* Slightly rounded corners for pages */
-  overflow: hidden; /* Ensure content stays within the border */
-  background: #fff; /* Ensure pages have a white background */
+  border: 2px solid #f0d2c7;
+  box-shadow: inset 1px 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  overflow: hidden;
+  background-color: #fff;
 }
 
-/* Remove border and spine for the first and last pages */
 .page:first-child,
 .page:last-child {
-  border: none; /* Remove border */
-  box-shadow: none; /* Remove shadow */
-  background: none; /* Optional: Remove background if needed */
+  border: none;
+  box-shadow: none;
+  background: none;
 }
 
-/* Add a book-like spine between the pages */
 #magazine::before {
   content: '';
   position: absolute;
   top: 0;
-  left: 50%; /* Center the spine */
-  width: 4px; /* Width of the spine */
+  left: 50%;
+  width: 4px;
   height: 100%;
-  background: #8d4f47; /* Dark color for the spine */
-  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5); /* Add depth to the spine */
-  transform: translateX(-50%); /* Center the spine exactly */
-  z-index: 5; /* Ensure it appears above the background but below the pages */
-  pointer-events: none; /* Prevent interaction with the spine */
-}
-
-/* Remove spine for the first and last pages */
-#magazine .page:first-child::before,
-#magazine .page:last-child::before {
-  content: none; /* Remove the spine pseudo-element */
+  background: #8d4f47;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);
+  transform: translateX(-50%);
+  z-index: 5;
+  pointer-events: none;
 }
 
 #magazine .turn-page {
@@ -102,70 +93,63 @@ html, body {
   background-size: 100% 100%;
 }
 
-
-/* Fix for the jittering arrows */
+/* Flipbook arrows */
 .turn-page .next, .turn-page .prev {
   position: absolute;
   top: 50%;
-  transform: translateY(-50%); /* Vertically center the arrow */
-  z-index: 20; /* Ensure arrows are always on top */
-  background: rgba(0, 0, 0, 0.5); /* Transparent background */
-  border: 2px solid #8d4f47; /* Optional: Add border to make arrows more visible */
+  transform: translateY(-50%);
+  z-index: 20;
+  background: rgba(0, 0, 0, 0.5);
+  border: 2px solid #8d4f47;
   border-radius: 50%;
   padding: 10px;
   color: #fff;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  box-sizing: border-box; /* Ensures padding and border don't affect position */
+  box-sizing: border-box;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40px; /* Set a fixed width */
-  height: 40px; /* Set a fixed height */
-  will-change: transform; /* Triggers GPU acceleration for smooth transitions */
+  width: 40px;
+  height: 40px;
 }
 
-/* Position the right arrow */
 .turn-page .next {
-  right: 10px; /* Align right arrow with a fixed offset */
+  right: 10px;
 }
 
-/* Position the left arrow */
 .turn-page .prev {
-  left: 10px; /* Align left arrow with a fixed offset */
+  left: 10px;
 }
 
-/* Hover effect for arrows */
 .turn-page .next:hover, .turn-page .prev:hover {
-  background-color: #8d4f47; /* Change color on hover */
+  background-color: #8d4f47;
 }
 
-
-/* For Photo and Video */
+/* Image + Video page layout */
 .page.white-page {
   display: flex;
-  flex-direction: column; /* Stack the image and video vertically */
-  /* Remove height: 100%; */
+  flex-direction: column;
 }
 
 .image-content {
-  height: 45%; /* Even less to account for bigger padding */
-  padding: 2%; /* More padding inside */
+  height: 45%;
+  padding: 2%;
   display: flex;
   align-items: center;
   justify-content: center;
-  filter: drop-shadow(0 0 5% rgba(255, 255, 255, 0.7));
   box-sizing: border-box;
-  border-radius: 20px; /* Curved corners */
-  overflow: hidden; /* Prevents image overflow outside the rounded border */
-  background: rgba(255, 255, 255, 0.05); /* Optional: light background for better visual */
+  border-radius: 20px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.05);
+  filter: drop-shadow(0 0 5% rgba(255, 255, 255, 0.7));
 }
 
 .image-content img {
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
-  border-radius: 15px; /* Optional: curve image slightly too */
+  border-radius: 15px;
 }
 
 .video-content {
@@ -176,29 +160,28 @@ html, body {
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
-  border-radius: 20px; /* Curved corners */
+  border-radius: 20px;
   overflow: hidden;
-  background: rgba(255, 255, 255, 0.05); /* Optional: light background for better visual */
+  background: rgba(255, 255, 255, 0.05);
 }
 
 .video-content video {
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
-  border-radius: 15px; /* Optional: curve video slightly too */
+  border-radius: 15px;
 }
 
-
-/* Navigation Buttons */
+/* Nav buttons (for desktop) */
 .nav-button {
   position: fixed;
   top: 50%;
   transform: translateY(-50%);
-  background: #f0d2c7; /* Light background matching header/footer */
-  color: #8d4f47; /* Dark text color */
-  border: 2px solid #8d4f47; /* Dark border */
-  border-radius: 5px; /* Rounded square */
-  width: 30px; /* Slightly bigger for square feel */
+  background: #f0d2c7;
+  color: #8d4f47;
+  border: 2px solid #8d4f47;
+  border-radius: 5px;
+  width: 40px;
   height: 40px;
   font-size: 2vw;
   cursor: pointer;
@@ -207,22 +190,86 @@ html, body {
   align-items: center;
   justify-content: center;
   transition: background-color 0.3s ease, color 0.3s ease;
-  box-sizing: border-box; /* Proper sizing */
+  box-sizing: border-box;
 }
 
-
-/* Hover effect */
 .nav-button:hover {
-  background: #8d4f47; /* Darken background on hover */
-  color: #f0d2c7; /* Lighten arrow color */
+  background: #8d4f47;
+  color: #f0d2c7;
 }
 
-/* Position left button */
 .left-button {
-  left: 1vw; /* Stick to the very left */
+  left: 1vw;
 }
 
-/* Position right button */
 .right-button {
-  right: 1vw; /* Stick to the very right */
+  right: 1vw;
+}
+
+/* Mobile simple scroll mode */
+#magazine.simple-scroll {
+  width: 90%;
+  max-width: 800px;
+  margin: 10vh auto 10vh auto; /* margin from header and footer */
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transform: none;
+  background: none;
+  box-shadow: none;
+}
+
+/* Mobile simple scroll mode */
+#magazine.simple-scroll {
+  width: 90%;
+  max-width: 800px;
+  margin: 10vh auto; /* margin from header and footer */
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transform: none;
+  background: none;
+  box-shadow: none;
+}
+
+#magazine.simple-scroll .page {
+  width: 90%;
+  max-width: 600px;
+  aspect-ratio: 15/21; /* <<< KEY: portrait page shape */
+  margin: 2.5vh auto;
+  border: none;
+  border-radius: 10px;
+  overflow: hidden;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-color: #ffffff; /* optional: white bg under transparent areas */
+  box-shadow: 0px 2px 5px rgba(0,0,0,0.05);
+  padding: 0;
+  background-color: #8d4f47;
+}
+
+
+/* Hide spine */
+#magazine.simple-scroll::before {
+  display: none;
+}
+
+/* Hide nav buttons on mobile */
+@media (max-width: 768px) {
+  .nav-button {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .header h1 {
+    font-size: 8vw; /* Bigger heading font on mobile */
+  }
+
+  .footer {
+    font-size: 4vw; /* Bigger footer text on mobile */
+  }
 }
