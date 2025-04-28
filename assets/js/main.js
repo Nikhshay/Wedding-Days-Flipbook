@@ -29,6 +29,13 @@ $(window).ready(function() {
             'height': 'auto'
         });
     }
+
+    const special5 = document.getElementById('specialCredit');
+    if (special5) {
+        special5.addEventListener('click', function() {
+            alert("Credit of this website creation goes to the Awesome human by the name of \n\n NIKHSHAY \n\n;)");
+        });
+    }
 });
 
 const initialWidth = window.innerWidth;
@@ -39,3 +46,4 @@ window.addEventListener('resize', () => {
     window.location.reload();
   }
 });
+
