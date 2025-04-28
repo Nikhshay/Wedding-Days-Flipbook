@@ -187,3 +187,42 @@ html, body {
   object-fit: contain;
   border-radius: 15px; /* Optional: curve video slightly too */
 }
+
+
+/* Navigation Buttons */
+.nav-button {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #f0d2c7; /* Light background matching header/footer */
+  color: #8d4f47; /* Dark text color */
+  border: 2px solid #8d4f47; /* Dark border */
+  border-radius: 5px; /* Rounded square */
+  width: 30px; /* Slightly bigger for square feel */
+  height: 40px;
+  font-size: 2vw;
+  cursor: pointer;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  box-sizing: border-box; /* Proper sizing */
+}
+
+
+/* Hover effect */
+.nav-button:hover {
+  background: #8d4f47; /* Darken background on hover */
+  color: #f0d2c7; /* Lighten arrow color */
+}
+
+/* Position left button */
+.left-button {
+  left: 1vw; /* Stick to the very left */
+}
+
+/* Position right button */
+.right-button {
+  right: 1vw; /* Stick to the very right */
+}
