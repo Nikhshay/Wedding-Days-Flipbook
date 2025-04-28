@@ -5,10 +5,12 @@ html, body {
   margin: 0;
   padding: 0;
   height: 100vh;
+  overflow-x: auto;
+  overflow-y: auto
 }
 
 .header {
-  padding: 2vh 5vw;
+  padding: 1vh 1vw;
   background: #f0d2c7;
 }
 
@@ -17,29 +19,40 @@ html, body {
   color: #8d4f47;
   text-transform: uppercase;
   text-align: center;
-  border-bottom: 3px solid #8d4f47;
-  margin: 3px 0;
-  font-size: 2.5em;
+  border-bottom: 0.3vw solid #8d4f47;
+  margin: 1vw 0;
+  font-size: 2vw;
+  width: 100%;
 }
 
 /* Footer styling */
 .footer {
+  position: fixed;
   font-family: 'Great Vibes', cursive;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 0.3vh 0.3vw;
   background: #f0d2c7;
-  padding: 1vh 1vw; /* Reduced padding for smaller height */
-  text-align: center;
   color: #8d4f47;
-  font-size: 1.5em; /* Optional: Reduce font size if needed */
+  font-size: 1.5vw;
+  z-index: 10;
+  text-align: center;
+  box-sizing: border-box;
+  transition: transform 0.3s ease-in-out; /* Add a smooth transition for the hide/show effect */
+}
+
+.footer--hidden {
+  transform: translateY(100%); /* Move the footer out of the viewport */
 }
 
 /* Add a book-like border around the entire magazine */
 #magazine {
-  width: 1500px;
-  height: 900px;
+  width: 60%;
+  height: 75%; /* Equivalent to 1575px on a specific viewport, adjust if needed */
   justify-content: center;
-  position: relative;
+  position: fixed;
   display: flex;
-  gap: 4px; /* Add a tiny gap between the pages */
   margin: 1vw auto; /* Center horizontally and add vertical space */
   transform: scale(0.8); /* Scale down the flipbook to 80% of its original size */
   transform-origin: center; /* Ensure scaling happens from the center */
@@ -85,12 +98,9 @@ html, body {
 }
 
 #magazine .turn-page {
-  background-color: #f8e1d7;
+  background-color: #8d4f47;
   background-size: 100% 100%;
 }
-
-
-
 
 
 /* Fix for the jittering arrows */
@@ -131,27 +141,49 @@ html, body {
 }
 
 
-
-
-
 /* For Photo and Video */
 .page.white-page {
   display: flex;
   flex-direction: column; /* Stack the image and video vertically */
-  justify-content: space-between; /* Add space between the image and video */
-  height: 100%; /* Ensure the page takes full height */
+  /* Remove height: 100%; */
 }
 
 .image-content {
-  flex: 1; /* Take up half the height */
+  height: 45%; /* Even less to account for bigger padding */
+  padding: 2%; /* More padding inside */
   display: flex;
   align-items: center;
   justify-content: center;
+  filter: drop-shadow(0 0 5% rgba(255, 255, 255, 0.7));
+  box-sizing: border-box;
+  border-radius: 20px; /* Curved corners */
+  overflow: hidden; /* Prevents image overflow outside the rounded border */
+  background: rgba(255, 255, 255, 0.05); /* Optional: light background for better visual */
+}
+
+.image-content img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: 15px; /* Optional: curve image slightly too */
 }
 
 .video-content {
-  flex: 1; /* Take up half the height */
+  margin-top: 2%;
+  height: 48%;
+  padding: 2%;
   display: flex;
   align-items: center;
   justify-content: center;
+  box-sizing: border-box;
+  border-radius: 20px; /* Curved corners */
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.05); /* Optional: light background for better visual */
+}
+
+.video-content video {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: 15px; /* Optional: curve video slightly too */
 }
