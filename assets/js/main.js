@@ -1,16 +1,27 @@
-$(window).ready(function() {
-    if (window.innerWidth > 768) { 
+$(window).ready(function () {
+    const isDesktop = window.innerWidth > 768;
+
+    if (isDesktop) {
+        const savedPage = parseInt(localStorage.getItem('currentPage'), 10);
+
         $('#magazine').turn({
             display: 'double',
             acceleration: true,
             gradients: !$.isTouch,
             elevation: 50,
             when: {
-                turned: function(e, page) {}
+                turned: function (e, page) {
+                    localStorage.setItem('currentPage', page);
+                }
             }
         });
 
-        $(window).on('keydown', function(e) {
+        // Go to saved page after turn.js is initialized
+        if (savedPage && !isNaN(savedPage)) {
+            $('#magazine').turn('page', savedPage);
+        }
+
+        $(window).on('keydown', function (e) {
             if (e.keyCode === 37) {
                 $('#magazine').turn('previous');
                 e.preventDefault();
@@ -32,18 +43,34 @@ $(window).ready(function() {
 
     const special5 = document.getElementById('specialCredit');
     if (special5) {
-        special5.addEventListener('click', function() {
+        special5.addEventListener('click', function () {
             alert("Credit of this website creation goes to the Awesome human by the name of \n\n NIKHSHAY \n\n;)");
         });
     }
 });
 
-const initialWidth = window.innerWidth;
+
+// ✅ Improved resize logic (avoids reloading during fullscreen video)
+let lastWidth = window.innerWidth;
+let resizeTimeout;
 
 window.addEventListener('resize', () => {
-  if (Math.abs(window.innerWidth - initialWidth) > 50) {
-    // Only reload if WIDTH changes significantly
-    window.location.reload();
-  }
-});
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+        const currentWidth = window.innerWidth;
 
+        const isFullscreen = !!(
+            document.fullscreenElement ||
+            document.webkitFullscreenElement ||
+            document.mozFullScreenElement ||
+            document.msFullscreenElement
+        );
+
+        if (!isFullscreen && Math.abs(currentWidth - lastWidth) > 100) {
+            localStorage.setItem('currentPage', $('#magazine').turn('page'));
+            window.location.reload();
+        }
+
+        lastWidth = currentWidth;
+    }, 300);
+});
