@@ -154,7 +154,7 @@ html, body {
 
 .video-content {
   margin-top: 2%;
-  height: 55%;
+  height: 50%;
   padding: 2%;
   display: flex;
   align-items: center;
@@ -166,10 +166,12 @@ html, body {
 }
 
 .video-content video {
-  max-width: 100%;
-  max-height: 95%;
+  width: 90%; /* reduce from 100% to give inner margin */
+  height: auto;
+  max-height: 90%; /* reduce vertical space slightly */
   object-fit: contain;
   border-radius: 15px;
+  border: none;
 }
 
 /* Nav buttons (for desktop) */
